@@ -75,7 +75,7 @@ int main()
     {
     case '1':
 
-        printf("Wecome To login Panel\n");
+        printf("Welcome To login Panel\n");
 
         printf("1. Student\n");
         printf("2. Faculty\n");
