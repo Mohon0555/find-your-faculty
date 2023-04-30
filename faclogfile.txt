@@ -1,0 +1,14 @@
+Name: Niaz 
+ ID: 003 
+ Dep: cse 
+ Pass: 234 
+ SUNDAY Slot-1: 8 
+ SUNDAY Slot-2: 6 
+ MONDAY Slot-1: 8 
+ MONDAY Slot-2: 9 
+ TUESDAY Slot-1: 0 
+ TUESDAY Slot-2: 2 
+ WEDNESDAY Slot-1: 3 
+ WEDNESDAY Slot-2: 4 
+ THUSDAY Slot-1: 6 
+ THUSDAY Slot-2: 7 
