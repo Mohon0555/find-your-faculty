@@ -52,6 +52,7 @@ int main()
 {
     char log_sign;
     char choice;
+    char slot;
 
     int found=0;
 
@@ -78,9 +79,12 @@ int main()
 
     FILE *stdlogfile;
     FILE *faclogfile;
+    FILE *facslote;
 
     stdlogfile=fopen("stdlogfile.txt", "a+");
     faclogfile=fopen("faclogfile.txt", "a+");
+
+    facslote=fopen("facslote.txt", "a+");
 
     switch(log_sign)
     {
@@ -126,7 +130,45 @@ int main()
                             if(strcmp(facName,facsin.name)==0)
                             {
                                 printf("Your faculty ID: %s \n Dep: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.id, facsin.dep, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
-                                break;
+
+                                printf("\n 1. SUNDAY Slot-1");
+                                printf("\n 2. SUNDAY Slot-2");
+                                printf("\n 3. MONDAY Slot-1");
+                                printf("\n 4. MONDAY Slot-2");
+                                printf("\n 5. TUESDAY Slot-1");
+                                printf("\n 6. TUESDAY Slot-2\n");
+
+                                printf("\t \n Enter your Slote: ");
+
+                                scanf("%d",&slot);
+
+                                switch(slot)
+                                {
+
+                                case 1:
+                                    printf("\n 1. SUNDAY Slot-1");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, "Facultry ID: %s \n Name: %s \n ID: %s \n SUNDAY Slot-1: %s",facsin.id,stdsin.name, stdsin.id, facsin.s_day_s1);
+                                    break;
+                                case 2:
+                                    printf("\n 2. SUNDAY Slot-2");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, "Name: %s \n ID: %s \n SUNDAY Slot-2: %s",stdsin.name, stdsin.id, facsin.s_day_s2);
+                                    break;
+                                case 3:
+                                    printf("\n 3. MONDAY Slot-1");
+                                    break;
+                                case 4:
+                                    printf("\n 4. MONDAY Slot-2");
+                                    break;
+                                case 5:
+                                    printf("\n 5. TUESDAY Slot-1");
+                                    break;
+                                case 6:
+                                    printf("\n 6. TUESDAY Slot-2");
+                                    break;
+                                }
+                                break;//while er break
                             }
 
                             else
@@ -172,6 +214,26 @@ int main()
                     {
                         printf("Welcome %s to login panel\n",facsin.name);
                         found =1;
+
+                        facslote=fopen("facslote.txt", "a+");
+                        faclogfile=fopen("faclogfile.txt", "a+");
+
+                        while(fscanf(facslote, "%s %s %s %s", facsin.id, stdsin.name, stdsin.id, facsin.s_day_s1)!=EOF)
+                        {
+                            if(strcmp(faclogin_ID,facsin.id)==0)
+                            {
+
+                                fprintf(facslote,"Student: %s \n ID: %s \n Slote %s", stdsin.name, stdsin.id, facsin.s_day_s1);
+
+                            }
+                            else
+                            {
+                                printf("\n no apoinment!");
+                                break;
+                            }
+                        }
+
+
                         break;
                     }
                     else

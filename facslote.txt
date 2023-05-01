@@ -1,0 +1,4 @@
+Facultry ID: 003 
+ Name: abul 
+ ID: 222 
+ SUNDAY Slot-1: 8
