@@ -4,27 +4,19 @@
 
 struct std_sinup
 {
-    char name[10];
+    char name[20];
     char id[10];
     char Dep[5];
     char pass[8];
 
 };
 
-struct std_login
-{
-    char ID[10];
-    char Pass[8];
-
-};
-
 struct fac_sinup
 {
-    char name[10];
+    char name[20];
     char id[5];
     char dep[5];
     char pass[8];
-
 
     char s_day_s1[10];
     char s_day_s2[10];
@@ -42,12 +34,93 @@ struct fac_sinup
     char th_day_s2[10];
 };
 
-struct fac_login
+struct fac_slot
 {
-    char ID[5];
-    char Pass[8];
+    char facName[10];
+    char stdName[10];
+    char stdID[10];
+    char slote[10];
 };
 
+int std_sinup_fun()
+{
+    struct std_sinup stdsin;
+    FILE *stdlogfile;
+
+    printf("\tEnter Your Name:");
+    scanf("%s", &stdsin.name);
+
+    printf("\tEnter Your ID:");
+    scanf("%s", &stdsin.id);
+
+    printf("\tEnter Your Department:");
+    scanf("%s", &stdsin.Dep);
+
+    printf("\tEnter Your Pass:");
+    scanf("%s", &stdsin.pass);
+
+    stdlogfile=fopen("stdlogfile.txt", "a+");
+    fprintf(stdlogfile, " Name: %s \n ID: %s \n Department: %s \n Pass: %s \n", stdsin.name, stdsin.id, stdsin.Dep, stdsin.pass );
+
+}
+int fac_sinup_fun()
+{
+    struct fac_sinup facsin;
+    FILE *faclogfile;
+    faclogfile=fopen("faclogfile.txt", "a+");
+
+    printf("\t Enter Your Name:");
+    scanf("%s", &facsin.name);
+
+    printf("\t Enter Your ID:");
+    scanf("%s", &facsin.id);
+
+    printf("\t Enter Your Department:");
+    scanf("%s", &facsin.dep);
+
+    printf("\t Enter Your Pass:");
+    scanf("%s", &facsin.pass);
+
+    printf("\t Enter Your SUNDAY Slot-1:");
+    scanf("%s", &facsin.s_day_s1);
+
+    printf("\t Enter Your SUNDAY Slot-2:");
+    scanf("%s", &facsin.s_day_s2);
+
+
+    printf("\t Enter Your MONDAY Slot-1:");
+    scanf("%s", &facsin.m_day_s1);
+
+    printf("\t Enter Your MONDAY Slot-2:");
+    scanf("%s", &facsin.m_day_s2);
+
+
+    printf("\t Enter Your TUESDAY Slot-1:");
+    scanf("%s", &facsin.t_day_s1);
+
+    printf("\t Enter Your TUESDAY Slot-2:");
+    scanf("%s", &facsin.t_day_s2);
+
+
+    printf("\t Enter Your WEDNESDAY Slot-1:");
+    scanf("%s", &facsin.w_day_s1);
+
+
+    printf("Enter Your WEDNESDAY Slot-2:");
+    scanf("%s", &facsin.w_day_s2);
+
+
+    printf("\t Enter Your THUSDAY Slot-1:");
+    scanf("%s", &facsin.th_day_s1);
+
+
+    printf("\t Enter Your THUSDAY Slot-2:");
+    scanf("%s", &facsin.th_day_s2);
+
+
+    fprintf(faclogfile, " Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s \n",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
+
+}
 int main()
 {
     char log_sign;
@@ -62,18 +135,20 @@ int main()
     char faclogin_ID[10];
     char faclogin_Pass[8];
 
-    struct std_login stdlog;
-    struct std_sinup stdsin;
 
-    struct fac_login faclog;
+    struct std_sinup stdsin;
     struct fac_sinup facsin;
 
+    struct fac_slot facslot;
+
     char facName[10];
+    printf("\n\t+--------------------------------+\n ");
+    printf("\t|\t FIND YOUR FACULY \t |");
+    printf("\n\t+--------------------------------+\n\n ");
 
-    printf("Find Your Faculty\n");
-
-    printf("1. Login\n");
-    printf("2. SingUp\n");
+    printf("\t 1. Login\n");
+    printf("\t 2. SingUp\n");
+    printf("\n\t Enter Your Choice: ");
 
     scanf("%c", &log_sign);
 
@@ -90,22 +165,26 @@ int main()
     {
     case '1':
 
-        printf("Welcome To login Panel\n");
+        printf("\n\t+----------------------------------------+\n ");
+        printf("\t|\t  Welcome To login Panel \t |");
+        printf("\n\t+----------------------------------------+\n\n ");
 
-        printf("1. Student\n");
-        printf("2. Faculty\n");
+        printf("\t1. Student\n");
+        printf("\t2. Faculty\n");
 
-
+        printf("\n\tEnter Your Choice: ");
         scanf("%d", &choice);
         switch(choice)
         {
         case 1:
 
-            printf("Student Login Panel\n");
+            printf("\n\t+--------------------------------+\n ");
+            printf("\t|\tStudent Login Panel \t |");
+            printf("\n\t+--------------------------------+\n\n ");
 
-            printf("Enter Your ID:");
+            printf("\tEnter Your ID:");
             scanf("%s", &stdlogin_id);
-            printf("Enter Your Pass:");
+            printf("\tEnter Your Pass:");
             scanf("%s", &stdlogin_pass);
 
             stdlogfile=fopen("stdlogfile.txt", "a+");
@@ -117,26 +196,30 @@ int main()
                 {
                     if(strcmp(stdlogin_pass,stdsin.pass)==0)
                     {
-                        printf("Welcome %s to login panel\n",stdsin.name );
+                        printf("\tWelcome %s to login panel\n",stdsin.name );
                         found =1;
 
-                        printf("Enter Your Faculy Name:");
+                        printf("\tEnter Your Faculy Name:");
                         scanf("%s",&facName);
 
                         faclogfile=fopen("faclogfile.txt", "a+");
 
-                        while(fscanf(faclogfile, "Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2)!=EOF)
+                        while(fscanf(faclogfile, " Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2)!= EOF)
                         {
                             if(strcmp(facName,facsin.name)==0)
                             {
-                                printf("Your faculty ID: %s \n Dep: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.id, facsin.dep, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
+                                printf(" Your faculty ID: %s \n Dep: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.id, facsin.dep, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
 
-                                printf("\n 1. SUNDAY Slot-1");
-                                printf("\n 2. SUNDAY Slot-2");
-                                printf("\n 3. MONDAY Slot-1");
-                                printf("\n 4. MONDAY Slot-2");
-                                printf("\n 5. TUESDAY Slot-1");
-                                printf("\n 6. TUESDAY Slot-2\n");
+                                printf("\n\t 1. SUNDAY Slot-1");
+                                printf("\n\t 2. SUNDAY Slot-2");
+                                printf("\n\t 3. MONDAY Slot-1");
+                                printf("\n\t 4. MONDAY Slot-2");
+                                printf("\n\t 5. TUESDAY Slot-1");
+                                printf("\n\t 6. TUESDAY Slot-2\n");
+                                printf("\n\t 7. WEDNESSDAY Slot-1\n");
+                                printf("\n\t 8. WEDNESSDAY Slot-2\n");
+                                printf("\n\t 9. THUSDAY Slot-1\n");
+                                printf("\n\t 10. THUSDAY Slot-2\n");
 
                                 printf("\t \n Enter your Slote: ");
 
@@ -146,49 +229,79 @@ int main()
                                 {
 
                                 case 1:
-                                    printf("\n 1. SUNDAY Slot-1");
+                                    printf("\n\t 1. SUNDAY Slot-1");
                                     facslote=fopen("facslote.txt", "a+");
-                                    fprintf(facslote, "Facultry ID: %s \n Name: %s \n ID: %s \n SUNDAY Slot-1: %s",facsin.id,stdsin.name, stdsin.id, facsin.s_day_s1);
+                                    fprintf(facslote, " Facultry Name: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.s_day_s1);
                                     break;
                                 case 2:
-                                    printf("\n 2. SUNDAY Slot-2");
+                                    printf("\n\t 2. SUNDAY Slot-2");
                                     facslote=fopen("facslote.txt", "a+");
-                                    fprintf(facslote, "Name: %s \n ID: %s \n SUNDAY Slot-2: %s",stdsin.name, stdsin.id, facsin.s_day_s2);
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.s_day_s2);
                                     break;
                                 case 3:
-                                    printf("\n 3. MONDAY Slot-1");
+                                    printf("\n\t 3. MONDAY Slot-1");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.m_day_s1);
                                     break;
                                 case 4:
-                                    printf("\n 4. MONDAY Slot-2");
+                                    printf("\n\t 4. MONDAY Slot-2");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.m_day_s2);
                                     break;
                                 case 5:
-                                    printf("\n 5. TUESDAY Slot-1");
+                                    printf("\n\t 5. TUESDAY Slot-1");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.t_day_s1);
                                     break;
                                 case 6:
-                                    printf("\n 6. TUESDAY Slot-2");
+                                    printf("\n\t 6. TUESDAY Slot-2");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.t_day_s2);
+                                    break;
+                                case 7:
+                                    printf("\n\t 7. WEDNESSDAY Slot-1");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.w_day_s1);
+                                    break;
+                                case 8:
+                                    printf("\n\t 8. WEDNESSDAY Slot-2");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.w_day_s2);
+                                    break;
+
+                                case 9:
+                                    printf("\n\t 9. THUSDAY Slot-1");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.th_day_s1);
+                                    break;
+                                case 10:
+                                    printf("\n\t 10. THUSDAY Slot-2");
+                                    facslote=fopen("facslote.txt", "a+");
+                                    fprintf(facslote, " Facultry ID: %s \n Student Name: %s \n ID: %s \n SUNDAY Slot-1: %s\n",facsin.name,stdsin.name,stdsin.id,facsin.th_day_s2);
                                     break;
                                 }
-                                break;//while er break
+                                break;
                             }
 
                             else
                             {
-                                printf("\nInvalid faculty name!");
+                                printf("\n\tInvalid faculty name!");
                                 break;
                             }
+                            fclose(faclogfile);
                         }
 
                     }
                     else
                     {
-                        printf("\nInvalid Password!");
+                        printf("\t\nInvalid Password!");
                         found =1;
                     }
                 }
             }
             if(!found)
             {
-                printf("Invalid ID or password. Please try again.\n");
+                printf("\tInvalid ID or password. Please try again.\n");
 
             }
 
@@ -196,16 +309,19 @@ int main()
             break;
 
         case 2:
-            printf("Faculty Login Panel\n");
 
-            printf("Enter Your ID:");
+            printf("\n\t+--------------------------------+\n ");
+            printf("\t|\tFaculty Login Panel \t |");
+            printf("\n\t+--------------------------------+\n\n ");
+
+            printf("\tEnter Your ID:");
             scanf("%s", &faclogin_ID);
-            printf("Enter Your Pass:");
+            printf("\tEnter Your Pass:");
             scanf("%s", &faclogin_Pass);
 
             faclogfile=fopen("faclogfile.txt", "a+");
 
-            while(fscanf(faclogfile, "Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2)!= EOF)
+            while(fscanf(faclogfile, " Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2)!= EOF)
 
             {
                 if(strcmp(faclogin_ID,facsin.id)==0)
@@ -215,10 +331,11 @@ int main()
                         printf("Welcome %s to login panel\n",facsin.name);
                         found =1;
 
-                        facslote=fopen("facslote.txt", "a+");
                         faclogfile=fopen("faclogfile.txt", "a+");
 
-                        while(fscanf(facslote, "%s %s %s %s", facsin.id, stdsin.name, stdsin.id, facsin.s_day_s1)!=EOF)
+                        facslote=fopen("facslote.txt", "a+");
+
+                        while(fscanf(facslote, " Facultry: %s \n Student: %s \n ID: %s \n Slote: %s \n", facsin.name, stdsin.name, stdsin.id, facsin.s_day_s1)!= EOF)
                         {
                             if(strcmp(faclogin_ID,facsin.id)==0)
                             {
@@ -228,7 +345,7 @@ int main()
                             }
                             else
                             {
-                                printf("\n no apoinment!");
+                                printf("\n \tno apoinment!");
                                 break;
                             }
                         }
@@ -238,14 +355,14 @@ int main()
                     }
                     else
                     {
-                        printf("\nInvalid Password!");
+                        printf("\n\tInvalid Password!");
                         found =1;
                     }
                 }
             }
             if(!found)
             {
-                printf("Invalid ID or password. Please try again.\n");
+                printf("\tInvalid ID or password. Please try again.\n");
 
             }
 
@@ -254,85 +371,36 @@ int main()
         }
         break;
     case '2':
-        printf("Welcome To SinUp panel\n");
 
-        printf("1. Student\n");
-        printf("2. Faculty\n");
+        printf("\n\t+----------------------------------------+\n ");
+        printf("\t|\tWelcome To SinUp panel \t\t |");
+        printf("\n\t+----------------------------------------+\n\n ");
 
+
+        printf("\t1. Student\n");
+        printf("\t2. Faculty\n");
+        printf("\tEnter Your Choice:");
         scanf("%d", &choice);
 
         switch(choice)
         {
         case 1:
-            printf("Student SinUp Panel\n");
-
-            printf("Enter Your Name:");
-            scanf("%s", &stdsin.name);
-
-            printf("Enter Your ID:");
-            scanf("%s", &stdsin.id);
-
-            printf("Enter Your Department:");
-            scanf("%s", &stdsin.Dep);
-
-            printf("Enter Your Pass:");
-            scanf("%s", &stdsin.pass);
-
-            fprintf(stdlogfile, " Name: %s \n ID: %s \n Department: %s \n Pass: %s \n", stdsin.name, stdsin.id, stdsin.Dep, stdsin.pass );
+            printf("\n\t+------------------------------------+\n ");
+            printf("\t|\t Student SinUp panel \t\t |");
+            printf("\n\t+------------------------------------+\n\n ");
+            std_sinup_fun();
             break;
 
         case 2:
-            faclogfile=fopen("faclogfile.txt", "a+");
-            printf("Faculty SinUp Panel\n");
-
-            printf("Enter Your Name:");
-            scanf("%s", &facsin.name);
-
-            printf("Enter Your ID:");
-            scanf("%s", &facsin.id);
-
-            printf("Enter Your Department:");
-            scanf("%s", &facsin.dep);
-
-            printf("Enter Your Pass:");
-            scanf("%s", &facsin.pass);
-
-            printf("Enter Your SUNDAY Slot-1:");
-            scanf("%s", &facsin.s_day_s1);
-
-            printf("Enter Your SUNDAY Slot-2:");
-            scanf("%s", &facsin.s_day_s2);
-
-            printf("Enter Your MONDAY Slot-1:");
-            scanf("%s", &facsin.m_day_s1);
-
-            printf("Enter Your MONDAY Slot-2:");
-            scanf("%s", &facsin.m_day_s2);
-
-            printf("Enter Your TUESDAY Slot-1:");
-            scanf("%s", &facsin.t_day_s1);
-
-            printf("Enter Your TUESDAY Slot-2:");
-            scanf("%s", &facsin.t_day_s2);
-
-            printf("Enter Your WEDNESDAY Slot-1:");
-            scanf("%s", &facsin.w_day_s1);
-
-            printf("Enter Your WEDNESDAY Slot-2:");
-            scanf("%s", &facsin.w_day_s2);
-
-            printf("Enter Your THUSDAY Slot-1:");
-            scanf("%s", &facsin.th_day_s1);
-
-            printf("Enter Your THUSDAY Slot-2:");
-            scanf("%s", &facsin.th_day_s2);
-
-            fprintf(faclogfile, "Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s \n",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
+            printf("\n\t+----------------------------------------+\n ");
+            printf("\t|\t Faculty SinUp panel \t\t |");
+            printf("\n\t+----------------------------------------+\n\n ");
+            fac_sinup_fun();
             break;
         }
         break;
     default:
-        printf("Dhur miya bhagen");
+        printf("Invalid Choice!");
     }
     return 0;
 }
