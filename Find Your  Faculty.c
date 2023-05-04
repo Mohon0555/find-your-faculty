@@ -10,6 +10,26 @@ struct std_sinup
     char pass[8];
 
 };
+int std_sinup_fun()
+{
+    struct std_sinup stdsin;
+    FILE *stdlogfile;
+
+    printf("\tEnter Your Name:");
+    scanf("%s", &stdsin.name);
+
+    printf("\tEnter Your ID:");
+    scanf("%s", &stdsin.id);
+
+    printf("\tEnter Your Department:");
+    scanf("%s", &stdsin.Dep);
+
+    printf("\tEnter Your Pass:");
+    scanf("%s", &stdsin.pass);
+
+    stdlogfile=fopen("stdlogfile.txt", "a+");
+    fprintf(stdlogfile, " Name: %s \n ID: %s \n Department: %s \n Pass: %s \n", stdsin.name, stdsin.id, stdsin.Dep, stdsin.pass );
+}
 
 struct fac_sinup
 {
@@ -42,85 +62,43 @@ struct fac_slot
     char slote[10];
 };
 
-int std_sinup_fun()
-{
-    struct std_sinup stdsin;
-    FILE *stdlogfile;
 
-    printf("\tEnter Your Name:");
-    scanf("%s", &stdsin.name);
-
-    printf("\tEnter Your ID:");
-    scanf("%s", &stdsin.id);
-
-    printf("\tEnter Your Department:");
-    scanf("%s", &stdsin.Dep);
-
-    printf("\tEnter Your Pass:");
-    scanf("%s", &stdsin.pass);
-
-    stdlogfile=fopen("stdlogfile.txt", "a+");
-    fprintf(stdlogfile, " Name: %s \n ID: %s \n Department: %s \n Pass: %s \n", stdsin.name, stdsin.id, stdsin.Dep, stdsin.pass );
-
-}
 int fac_sinup_fun()
 {
     struct fac_sinup facsin;
     FILE *faclogfile;
     faclogfile=fopen("faclogfile.txt", "a+");
-
     printf("\t Enter Your Name:");
     scanf("%s", &facsin.name);
-
     printf("\t Enter Your ID:");
     scanf("%s", &facsin.id);
-
     printf("\t Enter Your Department:");
     scanf("%s", &facsin.dep);
-
     printf("\t Enter Your Pass:");
     scanf("%s", &facsin.pass);
-
     printf("\t Enter Your SUNDAY Slot-1:");
     scanf("%s", &facsin.s_day_s1);
-
     printf("\t Enter Your SUNDAY Slot-2:");
     scanf("%s", &facsin.s_day_s2);
-
-
     printf("\t Enter Your MONDAY Slot-1:");
     scanf("%s", &facsin.m_day_s1);
-
     printf("\t Enter Your MONDAY Slot-2:");
     scanf("%s", &facsin.m_day_s2);
-
-
     printf("\t Enter Your TUESDAY Slot-1:");
     scanf("%s", &facsin.t_day_s1);
-
     printf("\t Enter Your TUESDAY Slot-2:");
     scanf("%s", &facsin.t_day_s2);
-
-
     printf("\t Enter Your WEDNESDAY Slot-1:");
     scanf("%s", &facsin.w_day_s1);
-
-
-    printf("Enter Your WEDNESDAY Slot-2:");
+    printf("\t Enter Your WEDNESDAY Slot-2:");
     scanf("%s", &facsin.w_day_s2);
-
-
     printf("\t Enter Your THUSDAY Slot-1:");
     scanf("%s", &facsin.th_day_s1);
-
-
     printf("\t Enter Your THUSDAY Slot-2:");
     scanf("%s", &facsin.th_day_s2);
-
-
     fprintf(faclogfile, " Name: %s \n ID: %s \n Dep: %s \n Pass: %s \n SUNDAY Slot-1: %s \n SUNDAY Slot-2: %s \n MONDAY Slot-1: %s \n MONDAY Slot-2: %s \n TUESDAY Slot-1: %s \n TUESDAY Slot-2: %s \n WEDNESDAY Slot-1: %s \n WEDNESDAY Slot-2: %s \n THUSDAY Slot-1: %s \n THUSDAY Slot-2: %s \n",facsin.name,facsin.id, facsin.dep, facsin.pass, facsin.s_day_s1,facsin.s_day_s2,facsin.m_day_s1,facsin.m_day_s2, facsin.t_day_s1, facsin.t_day_s2, facsin.w_day_s1, facsin.w_day_s2, facsin.th_day_s1, facsin.th_day_s2);
-
 }
+
 int main()
 {
     char log_sign;
@@ -188,7 +166,6 @@ int main()
             scanf("%s", &stdlogin_pass);
 
             stdlogfile=fopen("stdlogfile.txt", "a+");
-
 
             while(fscanf(stdlogfile," Name: %s \n ID: %s \n Department: %s \n Pass: %s \n", stdsin.name, stdsin.id, stdsin.Dep, stdsin.pass)!= EOF)
             {
@@ -328,7 +305,7 @@ int main()
                 {
                     if(strcmp(faclogin_Pass,facsin.pass)==0)
                     {
-                        printf("Welcome %s to login panel\n",facsin.name);
+                        printf("\n \t Welcome %s to login panel\n",facsin.name);
                         found =1;
 
                         faclogfile=fopen("faclogfile.txt", "a+");
@@ -370,6 +347,7 @@ int main()
             break;
         }
         break;
+
     case '2':
 
         printf("\n\t+----------------------------------------+\n ");
@@ -385,9 +363,9 @@ int main()
         switch(choice)
         {
         case 1:
-            printf("\n\t+------------------------------------+\n ");
+            printf("\n\t+----------------------------------------+\n ");
             printf("\t|\t Student SinUp panel \t\t |");
-            printf("\n\t+------------------------------------+\n\n ");
+            printf("\n\t+----------------------------------------+\n\n ");
             std_sinup_fun();
             break;
 
